@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днем Рождения, Папа!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 60px 0;
+            position: relative;
+        }
+        
+        .birthday-cake {
+            font-size: 80px;
+            animation: bounce 2s infinite;
+            display: block;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .hero-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 8px solid rgba(255,255,255,0.3);
+            object-fit: cover;
+            margin: 0 auto 30px;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.5s;
+        }
+        
+        .hero-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .section {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #fdbb2d;
+            border-radius: 2px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #fdbb2d;
+            box-shadow: 0 0 0 4px rgba(253, 187, 45, 0.3);
+        }
+        
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 25px;
+            width: 2px;
+            height: calc(100% + 30px);
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .timeline-item:last-child:after {
+            display: none;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #fdbb2d;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-content {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 200px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 1.2rem;
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #fdbb2d;
+            position: absolute;
+            animation: confetti-fall 5s linear forwards;
+        }
+        
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Стили для разделов с поздравлениями */
+        .wish-section {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        
+        .wish-section p {
+            margin-bottom: 20px;
+        }
+        
+        .wish-signature {
+            text-align: right;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #fdbb2d;
+            margin-top: 20px;
+        }
+        
+        .wish-media {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .wish-media img,
+        .wish-media video {
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .wish-date {
+            text-align: center;
+            font-size: 1rem;
+            color: #fdbb2d;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        
+        .section-icon {
+            font-size: 2rem;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1.2rem; }
+            .section { padding: 20px; }
+            .gallery { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+            .wish-section { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="birthday-cake">🎂</div>
+            <h1>С Днем Рождения, Папа!</h1>
+            <p class="subtitle">Ты - самый лучший папа на свете!</p>
+            <img src="https://via.placeholder.com/250" alt="Фото папы" class="hero-image" id="hero-image">
+        </header>
+        
+        <section class="section">
+            <h2>Твой Жизненный Путь</h2>
+            <div class="timeline" id="timeline">
+                <!-- Таймлайн будет генерироваться через JavaScript -->
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>Твои фото</h2>
+            <div class="gallery" id="achievements">
+                <!-- Галерея достижений будет генерироваться через JavaScript -->
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>Семейные Фото</h2>
+            <div class="gallery" id="family-photos">
+                <!-- Галерея фото будет генерироваться через JavaScript -->
+            </div>
+        </section>
+        
+        <!-- Раздел с поздравлением от всей семьи -->
+        <section class="section">
+            <h2><span class="section-icon">👨‍👩‍👧‍👦</span> Мое Поздравление</h2>
+            <div class="wish-section" id="family-wish">
+                <!-- Поздравление от всей семьи будет генерироваться через JavaScript -->
+            </div>
+        </section>
+        
+        <!-- Раздел с поздравлением от мамы -->
+        <section class="section">
+            <h2><span class="section-icon">💕</span> Поздравление от Мамы</h2>
+            <div class="wish-section" id="mom-wish">
+                <!-- Поздравление от мамы будет генерироваться через JavaScript -->
+            </div>
+        </section>
+        
+        <!-- Раздел с поздравлением от сына/дочери -->
+        <section class="section">
+            <h2><span class="section-icon">👨‍👧</span> Поздравление от дочки</h2>
+            <div class="wish-section" id="child-wish">
+                <!-- Поздравление от сына/дочери будет генерироваться через JavaScript -->
+            </div>
+        </section>
+        
+        
+        
+        
+        
+        <footer>
+            <p>С любовью от всей семьи ❤️</p>
+        </footer>
+    </div>
+
+    <script>
+        // Данные для сайта (замените на реальные)
+        const dadData = {
+            name: "Сергей",
+            heroImage: "https://3.downloader.disk.yandex.ru/preview/ed9b6815105e2aace703c420a95605a1c6947153f29566929e652b2c684e2238/inf/wpQ11KuOhPEeOnxoSKpoaTzxARaDKXXYf57-oiBwZyUf_XRwjxI2Ogw3hRUmYCsWXjco6DyehvVWv_cIdWtuWA%3D%3D?uid=1130000067492822&filename=a487ac5e-309e-4b66-afeb-5197367f4adf.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=1130000067492822&tknv=v3&size=2940x1662", // Ссылка на фото папы
+            timeline: [
+                { year: "1975", title: "Рождение", description: "Родился в городе Санкт - Петербург" },
+                { year: "1997", title: "Университет", description: "Окончил университет по специальности прикладная математика" },
+                { year: "2004", title: "Семья", description: "Женился на маме" },
+                { year: "2006", title: "Сын", description: "Появился замечательный сын" },
+                { year: "2009", title: "Дочь", description: "На свет родилась Лиза" },
+                { year: "2023", title: "ПРОРЕКТОР", description: "Стал биг боссом" }
+            ],
+            achievements: [
+                { title: "Тут ты", image: "https://downloader.disk.yandex.ru/preview/61d11cb3e8850594371653b521566fff81176802744038562156ce72b98024e6/68d6c4e4/9aqdGT5rDt6VAtXK6w4TFrwP_KsKH8oFbLLJdwFCdXXndqV_ERv0IHeZVMPw4h7oCkvxmpQzA3T_GGLYN3DBaA%3D%3D?uid=0&filename=z_0c00babb.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=0&tknv=v3&size=2940x1662", description: "" },
+                { title: "Тоже ты", image: "https://3.downloader.disk.yandex.ru/preview/ee8b3bfb78684f448ccdeb8206487b8e8aa1b53816de7312fbab7d6017fd1f39/inf/pRPXlA-84Enlra93VouIOKhzrDS_Z95bTqz2PQKX7ngfZiwREUezZDF8B9IyH-z8WTzMXf4kImPoMSVJukOkHA%3D%3D?uid=1130000067492822&filename=7904df0b-3955-45ff-a80f-36fe69d97660.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=1130000067492822&tknv=v3&size=2940x1662", description: "" },
+                { title: "Еще ты", image: "https://4.downloader.disk.yandex.ru/preview/9f4cef49aaf7eaf0fbea862af91ad8a6a91883985146684587bb1a86fbd02f89/inf/aNf-L72EuoWYzwZkun6OD_qc9XI5vgSIEElMBvskuzjtSTD2wsRGnNqAXG-3wWULV_DWTq3pJzIZTIqpA2KFMQ%3D%3D?uid=1130000067492822&filename=98f12aa9-97e5-424a-a544-ab8b424b0bba.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=1130000067492822&tknv=v3&size=2940x1662", description: "" },
+                { title: "ТЫ", image: "https://3.downloader.disk.yandex.ru/preview/a02c1f09be675828546dda08f201f18c141f33faeaea881525035a9bdb9654b7/inf/5nRO6VQv0TnxYKzAGORdnSg0xgsM_Owz22Rv9XVWebUleMCDE094SdqaQCMSYGO6YYh8Vb3E72tmyLojawhCRQ%3D%3D?uid=1130000067492822&filename=w_57ef051f.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=1130000067492822&tknv=v3&size=2940x1662", description: "" }
+            ],
+            familyPhotos: [
+                { caption: "Мы всей семьей", image: "https://2.downloader.disk.yandex.ru/preview/3ec70eea5cc487982a1db98f512cf1ab44fd9b30415a3bc4b933483ff358323f/inf/guhT9o7NblyEqma0Oor0Jy-F__dAgAU47ga2lDf4l_qIDSMwJrB0ycw18NIrMtW1JjEf1R8vePQCiXNWbk_z1g%3D%3D?uid=1130000067492822&filename=IMG_7343.HEIC&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=1130000067492822&tknv=v3&size=2940x1662" },
+                { caption: "Ты с бабушкой", image: "https://3.downloader.disk.yandex.ru/preview/61431a1e78b50d115712bef42580c32547a8b589baf11a7d9a3a1fc2e2f94658/inf/dsFn9LfA0EKPKYMJFmCUX2p6Iz2pX7-VK5s8J05Z44bwZ_Vx4b92c3_aYvzaKH501L-Djwr2RPosEQHwnvUy7w%3D%3D?uid=1130000067492822&filename=PHOTO-2025-09-26-12-16-34%202.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=1130000067492822&tknv=v3&size=2940x1662" },
+                { caption: "Я и ты", image: "https://3.downloader.disk.yandex.ru/preview/448e6d3b5cc73fc395502ff1b3a4711de0e2615eb6dc4363d4723265fed8cc02/inf/VqqGP7gLS8dUqZ0HMbrIpeSxXQEeRAcqW1ilBv1ngZ6xLSmRiJiXPb16-zKPJue6GuXXrHJ-p8NuvFqixqpaLw%3D%3D?uid=1130000067492822&filename=IMG_0253.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=1130000067492822&tknv=v3&size=2940x1662" },
+                { caption: "Ты, мама, Бабушка Галя и дедушка Гена", image: "https://1.downloader.disk.yandex.ru/preview/4df331f366900c59642b2adf1b016fcdd0d9a107fe5c5ff3a128ad7f6b8e8259/inf/wQrWcC46xOPJGTaZve3_lPux4YWCtnjhbeS6EWe6SrNL62K2OmAodqnp-yzwFBUz2d8EdlOzYIy3BcUyOTuT_g%3D%3D?uid=1130000067492822&filename=IMG_2898.HEIC&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=1130000067492822&tknv=v3&size=2940x1662" },
+                { caption: "Мы большой семьей", image: "https://3.downloader.disk.yandex.ru/preview/a667c5e1e5c91862fd7f771f821b8cd9bd9ecfd8170eefd759233610dfd17fad/inf/A5CXFTAd2Skd-wk4UB3Jr-h4fdwbE4h1ypD7SHv6_8FxwbfO_mfoh93vxDMrCWOhd4TtiEAj6AslCtzm7CHrRw%3D%3D?uid=1130000067492822&filename=IMG_8252.HEIC&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=1130000067492822&tknv=v3&size=2940x1662" },
+                { caption: "Вы с мамой", image: "https://2.downloader.disk.yandex.ru/preview/33430798df3b20aa9e47f7fd6b4f92faf84980cec025293d4ea57184b714714a/inf/sOzQPaGW-Dl7fT8FtCkIOWp6Iz2pX7-VK5s8J05Z44Zl5KhNbb5EJVct0hRcTtyIAGmo2EXUG9qotI3qoMc0vg%3D%3D?uid=1130000067492822&filename=x_874e54f0.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=1130000067492822&tknv=v3&size=2940x1662" },
+                { caption: "На этом фото ты очень смешной", image: "https://2.downloader.disk.yandex.ru/preview/f648229905f69a6657403df4e3de65df4b84841030c14ec783f5222a5a3ef487/inf/-OzMQ4YpgI0m_1hrVOw_crwP_KsKH8oFbLLJdwFCdXXDgAEZz_1gbYRJTOPbjgGq3sw4EJ1FGjSw0TkgWmO3tQ%3D%3D?uid=1130000067492822&filename=rxABQSCl0KhW0WZY8fNG7GsTOgQwkLb2Q8GhBKki6MMqESlzC1Bh7hOWL-YKcerssvGFbvTWCQTFNNMKFU308jrB.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=1130000067492822&tknv=v3&size=2940x1662" },
+                { caption: "Тут ты маленький и я не могу понять, где ты, как будешь смотреть, расскажи,", image: "https://2.downloader.disk.yandex.ru/preview/a6652bb35abd02544aafb7091061a468527372e75feab0c4a0df8acac6149a19/inf/2KYw3u4M52oSDFJM5Dw2U7qq577yQ2n4HMt-2h87wrJw6tI5HuuPl2tiiM9n1R5NtlCDNZIi_RRwHPCjLO9NuA%3D%3D?uid=1130000067492822&filename=b53ae9e5-8ee7-4fa2-9d4a-4f49cc66e88b.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=1130000067492822&tknv=v3&size=2940x1662" }
+
+            ],
+            // Поздравление от всей семьи
+            familyWish: {
+                text: `
+                    <p>Дорогой папа, в этот особенный день я хочу выразить тебе всю свою любовь и благодарность. Ты всегда был для меня опорой, примером для подражания и самым лучшим другом.</p>
+                    
+                    <p>Я помню, как ты учил кататься на велосипеде, как помогал с уроками, как поддерживал в трудные минуты. Твоя мудрость, терпение и доброта помогли мне стать тем, кто я есть сегодня.</p>
+                    
+                    <p>Ты показал мне что такое настоящая мужественность - это не только сила, но и нежность, не только уверенность, но и умение просить прощения, не только успех, но и умение радоваться маленьким радостям жизни.</p>
+                    
+                    <p>Я горжусь тобой, твоими достижениями, твоими принципами. Ты - мой герой, мой наставник.</p>
+                    
+                    <p>Желаю тебе крепкого здоровья, неиссякаемой энергии, новых интересных проектов и, конечно же, больше времени для отдыха и увлечений. Пусть каждый твой день будет наполнен радостью, любовью и теплом.</p>
+                    
+                    <p>С днем рождения, папа! Я тебя очень люблю!</p>
+                `,
+                signature: "Твой сын",
+                media: [
+                    { type: "image", src: "https://1.downloader.disk.yandex.ru/preview/00c32da09ec328ecb75b3bace65f294babc3092e361cafa47fde535eb2e78cca/inf/CnXNAIoCmQ9DjVmKM_C13fYEKqSOjqyg4yL66Jm2wndlQbb17m8IaoHC8fGDkDCBkYs34X9HfUxCoe9BP5G5zg%3D%3D?uid=1130000067492822&filename=IMG_2328.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=1130000067492822&tknv=v3&size=2940x1662" },
+                    { type: "image", src: "https://1.downloader.disk.yandex.ru/preview/00e0d76cd06064bf97fedcd4a2131375ce5f8aeeb26b5a18113016bfa35fa044/inf/6xaNrzBy3MbOV3WGPVscdrVhSWdbiDJffX_Sj_nPq0_Js8JLBazJpnvGozK-HRe9jdlySfRMKP7R0EdjELn2HA%3D%3D?uid=1130000067492822&filename=IMG_7337.HEIC&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=1130000067492822&tknv=v3&size=2940x1662" }
+                ]
+            },
+            // Поздравление от мамы
+            momWish: {
+                text: `
+                    <p>Любимый мой, с днем рождения! Ты самый лучший муж и отец, которого только можно пожелать.</p>
+                    
+                    <p>С тобой мы прошли через столько всего - и радости, и трудности, и всегда ты был рядом, поддерживал и вдохновлял. Твоя сила духа и доброта сердца поражают меня до сих пор.</p>
+                    
+                    <p>Я благодарна судьбе за то, что она свела нас вместе. Ты сделал мою жизнь ярче, интереснее и счастливее. С тобой я чувствую себя защищенной и любимой.</p>
+                    
+                    <p>Желаю тебе здоровья, счастья, новых успехов во всех твоих начинаниях. Пусть каждый день приносит тебе радость и удовлетворение. Я всегда буду рядом, чтобы поддержать тебя и разделить с тобой все моменты жизни.</p>
+                    
+                    <p>Люблю тебя больше всего на свете! Твоя жена.</p>
+                `,
+                signature: "Твоя жена",
+                media: [
+                    { type: "image", src: "https://2.downloader.disk.yandex.ru/preview/3d44fe965fffb496a70b73108207e3b234193fe2605d7a2b53301338e4112b15/inf/ch0TSTQiIiId31fNd9tDNek0kxpqGmT1R5NsIYa_VkczhwZx62xkxvLUGLWudczbUyP86B-gTvr8dLnKjGLZdw%3D%3D?uid=1130000067492822&filename=IMG_2330.PNG&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=1130000067492822&tknv=v3&size=2940x1662" }
+                ]
+            },
+            // Поздравление от сына/дочери
+            childWish: {
+                text: `
+                    <p>Папа, с днем рождения! Ты мой самый главный пример в жизни. Я всегда смотрела на тебя и училась у тебя быть сильным, честным и ответственным человеком.</p>
+                    
+                    <p>Ты научил меня так многому - от того, как убирать свою комнату и учить уроки, до того, как важно держать свое слово. Ты всегда был рядом, когда мне нужна была помощь или совет.</p>
+                    
+                    <p>Я горжусь тем, что я твоя дочь.  Я надеюсь, что когда-нибудь я стану таким же замечательным родителем, как ты.</p>
+                    
+                    <p>Желаю тебе здоровья, счастья, успехов во всех твоих проектах. Пусть все твои мечты сбываются! Я тебя очень люблю!</p>
+                `,
+                signature: "Твоя доча",
+                media: [
+                    { type: "image", src: "https://1.downloader.disk.yandex.ru/preview/7ae71b05d9596da51c44ed2bbaff09778395a7908ddfbe1adfb6d077cc8409f4/inf/9Xqgam5_--mFGPsO3WwhiQ7qpGAWF7bWDz5WDk5XDFJ2635hI9YM8YCCFcpLAIQPLIV73uYCXQ3dF5UiC97jJQ%3D%3D?uid=1130000067492822&filename=IMG_2329.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=1130000067492822&tknv=v3&size=2940x1662" },
+                    { type: "image", src: "https://1.downloader.disk.yandex.ru/preview/abc8f1c1fce44318348a34748eb965c3ab704825e516f20125e595409d87669e/inf/cZD67ox3tPR4QbSBcpepRnpLc33sowqQYUsvbENDk9yXu4rsRyPn8UqX4_7Md7SYuEMYEyzCJAY2FJqKfGo5yA%3D%3D?uid=1130000067492822&filename=IMG_2327.PNG&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=1130000067492822&tknv=v3&size=2940x1662" }
+                ]
+            },
+             
+    
+        };
+
+        // Инициализация сайта
+        document.addEventListener('DOMContentLoaded', function() {
+            // Установка фото папы
+            document.getElementById('hero-image').src = dadData.heroImage;
+            
+            // Генерация таймлайна
+            const timelineContainer = document.getElementById('timeline');
+            dadData.timeline.forEach(item => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = 'timeline-item';
+                timelineItem.innerHTML = `
+                    <div class="timeline-date">${item.year}</div>
+                    <div class="timeline-content">
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                    </div>
+                `;
+                timelineContainer.appendChild(timelineItem);
+            });
+            
+            // Генерация галереи достижений
+            const achievementsContainer = document.getElementById('achievements');
+            dadData.achievements.forEach(item => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}">
+                    <div class="gallery-caption">${item.title}</div>
+                `;
+                achievementsContainer.appendChild(galleryItem);
+            });
+            
+            // Генерация галереи семейных фото
+            const photosContainer = document.getElementById('family-photos');
+            dadData.familyPhotos.forEach(item => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.caption}">
+                    <div class="gallery-caption">${item.caption}</div>
+                `;
+                photosContainer.appendChild(galleryItem);
+            });
+            
+            // Функция для генерации раздела с поздравлением
+            function generateWishSection(containerId, wishData, date) {
+                const container = document.getElementById(containerId);
+                container.innerHTML = wishData.text;
+                
+                // Добавление подписи
+                const signature = document.createElement('div');
+                signature.className = 'wish-signature';
+                signature.textContent = wishData.signature;
+                container.appendChild(signature);
+                
+                // Добавление даты
+                const dateElement = document.createElement('div');
+                dateElement.className = 'wish-date';
+                dateElement.textContent = date;
+                container.appendChild(dateElement);
+                
+                // Добавление медиа (если есть)
+                if (wishData.media && wishData.media.length > 0) {
+                    const mediaContainer = document.createElement('div');
+                    mediaContainer.className = 'wish-media';
+                    
+                    wishData.media.forEach(item => {
+                        if (item.type === 'image') {
+                            const img = document.createElement('img');
+                            img.src = item.src;
+                            img.alt = 'Фото к поздравлению';
+                            mediaContainer.appendChild(img);
+                        } else if (item.type === 'video') {
+                            const video = document.createElement('video');
+                            video.src = item.src;
+                            video.controls = true;
+                            mediaContainer.appendChild(video);
+                        }
+                    });
+                    
+                    container.appendChild(mediaContainer);
+                }
+            }
+            
+            // Генерация всех разделов с поздравлениями
+            generateWishSection('family-wish', dadData.familyWish, '26.09.2025');
+            generateWishSection('mom-wish', dadData.momWish, '26.09.2025');
+            generateWishSection('child-wish', dadData.childWish, '26.09.2025');
+            generateWishSection('dad-parents-wish', dadData.dadParentsWish, '26.09.2025');
+            generateWishSection('mom-parents-wish', dadData.momParentsWish, '26.09.2025');
+            generateWishSection('relatives-wish', dadData.relativesWish, '26.09.2025');
+            
+            // Функция создания конфетти
+            function createConfetti() {
+                const colors = ['#fdbb2d', '#b21f1f', '#1a2a6c', '#ffffff'];
+                
+                for (let i = 0; i < 100; i++) {
+                    setTimeout(() => {
+                        const confetti = document.createElement('div');
+                        confetti.className = 'confetti';
+                        confetti.style.left = Math.random() * 100 + '%';
+                        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                        confetti.style.width = Math.random() * 10 + 5 + 'px';
+                        confetti.style.height = confetti.style.width;
+                        confetti.style.opacity = Math.random() * 0.8 + 0.2;
+                        
+                        document.body.appendChild(confetti);
+                        
+                        // Удаление конфетти после анимации
+                        setTimeout(() => {
+                            confetti.remove();
+                        }, 5000);
+                    }, i * 30);
+                }
+            }
+            
+            // Запуск анимации конфетти при загрузке страницы
+            setTimeout(createConfetti, 1000);
+        });
+    </script>
+</body>
+</html>
